@@ -1,0 +1,5 @@
+Model: This is where the database for the users will be
+
+View: User Interface to accept logins/creation of accounts
+
+Controller: Accepts the input of the credentias and validates if required

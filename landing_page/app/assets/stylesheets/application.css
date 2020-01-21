@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+ .btn_create_user
+ {
+     height:75px;
+     width:200px;
+     margin: 0 auto;
+     font-size: 18px;
+     font-weight: bold;
+ }
+
+ .btn_login
+ {
+    height:75px;
+    width:200px;
+    font-size: 18px;
+    font-weight: bold;
+ }
+
+ 

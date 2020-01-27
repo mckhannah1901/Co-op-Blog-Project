@@ -31,11 +31,12 @@
 
  .btn_login
  {
-    height:80px;
-    width:200px;
+    height:20px;
+    width:150px;
     margin: 0 auto;
     font-size: 18px;
     font-weight: bold;
+    color: black;
     padding: 20px 20px;
     text-align: center;
     text-decoration: none;
@@ -48,3 +49,5 @@
  {
      background-color: lightgoldenrodyellow;
  }
+
+ 

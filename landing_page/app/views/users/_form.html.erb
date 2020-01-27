@@ -12,26 +12,33 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :f_name %>
-    <%= form.text_field :f_name %>
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name %>
   </div>
 
   <div class="field">
-    <%= form.label :l_name %>
-    <%= form.text_field :l_name %>
+    <%= form.label :second_name %>
+    <%= form.text_field :second_name %>
   </div>
 
   <div class="field">
-    <%= form.label :email_address %>
-    <%= form.text_field :email_address %>
+    <%= form.label :email %>
+    <%= form.text_field :email %>
   </div>
 
   <div class="field">
     <%= form.label :password %>
-    <%= form.text_field :password %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
+
+  <%= link_to "Home Page", root_path %>
 <% end %>

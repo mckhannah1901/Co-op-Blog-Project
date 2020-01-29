@@ -13,9 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
  .btn_create_user
  {
-    height:20px;
+    height:65px;
     width:150px;
     margin: 0 auto;
     font-size: 18px;
@@ -31,7 +35,7 @@
 
  .btn_login
  {
-    height:20px;
+    height:65px;
     width:150px;
     margin: 0 auto;
     font-size: 18px;

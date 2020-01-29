@@ -1,3 +1,5 @@
+
+
 <header class="navbar navbar-fixed-top navbar-inverse">
 
   <div class="container">
@@ -5,8 +7,6 @@
     <nav>
 
       <ul class="nav navbar-nav navbar-right">
-
-        <li><%= link_to "Home", root_path %></li>
 
         <% if logged_in? %>
 
@@ -22,9 +22,7 @@
 
             <ul class="dropdown-menu">
 
-              <li><%= link_to "Profile", current_user %></li>
-
-              <li><%= link_to "Settings", "#" %></li>
+              <li><%= link_to "Edit Profile", edit_user_url%></li>
 
               <li class="divider"></li>
 
@@ -60,7 +58,7 @@
 </p>
 
 <p>
-  <strong>Second name:</strong>
+  <strong>Second name: </strong>
   <%= @user.second_name %>
 </p>
 

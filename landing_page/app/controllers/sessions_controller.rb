@@ -14,8 +14,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    log_out
-    redirect_to root_url
+    session[:user_id] = @current_user = nil
+    redirect_to root_url, info: 'Logout Successful!'
   end
 
 end

@@ -1,5 +1,3 @@
-
-
 <header class="navbar navbar-fixed-top navbar-inverse">
 
   <div class="container">
@@ -9,8 +7,6 @@
       <ul class="nav navbar-nav navbar-right">
 
         <% if logged_in? %>
-
-          <li><%= link_to "Users", "#" %></li>
 
           <li class="dropdown">
 
@@ -35,6 +31,12 @@
             </ul>
 
           </li>
+        
+        <div class="fixed-top">
+          <% if logged_in? %>
+            <strong>Welcome, </strong>
+            <b><%= @user.email%></b>
+          <% end %>
 
         <% else %>
 
@@ -49,6 +51,7 @@
   </div>
 
 </header>
+
 
 <p id="notice"><%= notice %></p>
 

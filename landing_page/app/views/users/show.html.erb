@@ -6,11 +6,7 @@
 
       <ul class="nav navbar-nav navbar-right">
 
-        <li><%= link_to "Home", root_path %></li>
-
         <% if logged_in? %>
-
-          <li><%= link_to "Users", "#" %></li>
 
           <li class="dropdown">
 
@@ -22,9 +18,7 @@
 
             <ul class="dropdown-menu">
 
-              <li><%= link_to "Profile", current_user %></li>
-
-              <li><%= link_to "Settings", "#" %></li>
+              <li><%= link_to "Edit Profile", edit_user_url%></li>
 
               <li class="divider"></li>
 
@@ -37,6 +31,12 @@
             </ul>
 
           </li>
+        
+        <div class="fixed-top">
+          <% if logged_in? %>
+            <strong>Welcome, </strong>
+            <b><%= @user.email%></b>
+          <% end %>
 
         <% else %>
 
@@ -52,6 +52,7 @@
 
 </header>
 
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -60,7 +61,7 @@
 </p>
 
 <p>
-  <strong>Second name:</strong>
+  <strong>Second name: </strong>
   <%= @user.second_name %>
 </p>
 

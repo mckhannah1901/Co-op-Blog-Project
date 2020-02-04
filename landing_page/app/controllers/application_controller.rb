@@ -6,4 +6,24 @@ class ApplicationController < ActionController::Base
 
    include SessionsHelper
 
+   rescue_from CanCan::AccessDenied do |exception|  
+      flash[:danger] = "Access denied!"  
+      redirect_to login_path 
+    end  
+
+    before_action :set_cache_buster
+    def set_cache_buster
+      response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+      response.headers["Pragma"] = "no-cache"
+      response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
+    end
+
+    #before_action :ensure_login
+
+    #protected
+
+    #def ensure_login
+     # redirect_to login_path unless session[:user_id]
+    #end
+
 end

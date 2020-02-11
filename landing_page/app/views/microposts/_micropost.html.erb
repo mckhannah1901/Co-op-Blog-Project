@@ -7,6 +7,7 @@
 <li id="micropost-<%= micropost.id %>">
     <%# <%= link_to gravatar_for(micropost.user, size: 10), micropost.user %> 
     
+    <%# <span class="title"><%= micropost.id</span> %> 
     <span class="content"><%= micropost.content %></span>
     <span class="timestamp">
         Posted <%= Time.at(micropost.created_at) %> 

@@ -1,5 +1,17 @@
 <%= form_for(@micropost) do |f| %>
 
+    <% if @micropost.errors.any? %>
+        <div id="error_explanation">
+        <h2><%= pluralize(micropost.errors.count, "error") %> prohibited this blog post from being saved:</h2>
+
+        <ul>
+            <% micropost.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+        </ul>
+        </div>
+    <% end %>
+
     <div class="field">
         <%= f.text_field :title, placeholder: "Title..."%>
     </div>
@@ -8,6 +20,6 @@
         <%= f.text_area :content, placeholder: "New blog post..." %>
     </div>
 
-    <%= f.submit "Post", class: "btn btn-primary" %>
+    <%= f.submit "Publish Blog Post", class: "btn btn-primary" %>
 
 <% end %>

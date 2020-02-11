@@ -3,16 +3,19 @@ class MicropostsController < ApplicationController
     # before_action :logged_in, only: [:create, :destroy]
 
     def new
+        @micropost = Micropost.new
     end
   
     def create
-        @micropost = current_user.microposts.build(micropost_params)
+        @micropost = Micropost.new(micropost_params)
+        
         if @micropost.save
             flash[:success] = "Blog post was successfully created!"
-            redirect_to user
+            redirect_to current_user
         else
-            flash[:warning] = "Failed to create a blog post"
-            redirect_to user
+            flash[:danger] = "Failed to create your blog post"
+            redirect_to current_user
+        end
     end
 
     def destroy
@@ -24,5 +27,3 @@ class MicropostsController < ApplicationController
             params.require(:micropost).permit(:title, :content)
         end
     end
-
-end

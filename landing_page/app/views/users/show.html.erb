@@ -52,14 +52,8 @@
 
     </nav>
    
-    <div class="col-md-8">
-      <%# <% if @user.microposts.any? %> 
-        <h3></a>Blog Posts</h3>
-        <o1 class="microposts">
-         <%= render @micropost %>
-        </o1>
-        <%# <%= will_paginate @microposts %> 
-      <%# <% end %> 
+    <div class="micropost_form">
+      <%= render 'microposts/micropost_form' %>
     </div>
 
   </div>

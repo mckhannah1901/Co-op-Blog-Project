@@ -1,0 +1,13 @@
+<%= form_for(@micropost) do |f| %>
+
+    <div class="field">
+        <%= f.text_field :title, placeholder: "Title..."%>
+    </div>
+
+    <div class="field">
+        <%= f.text_area :content, placeholder: "New blog post..." %>
+    </div>
+
+    <%= f.submit "Post", class: "btn btn-primary" %>
+
+<% end %>

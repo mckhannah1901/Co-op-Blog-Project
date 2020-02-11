@@ -1,15 +1,18 @@
 <%# <o1 class="microposts">
 
-    <%= render @micropost %>
-<%# 
-<%# </o1> %> 
+    <%= render @microposts %>
+ 
+<%# </o1>  %> 
 
 <li id="micropost-<%= micropost.id %>">
     <%# <%= link_to gravatar_for(micropost.user, size: 10), micropost.user %> 
     
-    <%# <span class="title"><%= micropost.id</span> %> 
+    <span class="title"> Blog <%= micropost.id%>
+    <br></br> 
     <span class="content"><%= micropost.content %></span>
+    <br></br>
     <span class="timestamp">
-        Posted <%= Time.at(micropost.created_at) %> 
+        Posted <%= Time.at(micropost.created_at) %> by <%= @user.email%>
     </span>
+    
 </li>

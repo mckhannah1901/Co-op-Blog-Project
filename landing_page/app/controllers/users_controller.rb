@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     authorize! :view, @user, :message => "Unable to view user"
     # @microposts = @user.microposts.paginate(page: params[:page])
-    @micropost = @user.microposts.take(1)
+    @micropost = @user.microposts
   end
 
   # GET /users/new

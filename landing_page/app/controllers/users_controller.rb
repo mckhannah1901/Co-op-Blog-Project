@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     #authorize! :list, @users
+    #@microposts = @user.microposts.paginate(page: params[:page])
   end
 
   # GET /users/1
@@ -16,7 +17,8 @@ class UsersController < ApplicationController
      
     @user = User.find(params[:id])
     authorize! :view, @user, :message => "Unable to view user"
-    #@microposts = @user.microposts.paginate(page: params[:page])
+    # @microposts = @user.microposts.paginate(page: params[:page])
+    @micropost = @user.microposts.take(1)
   end
 
   # GET /users/new

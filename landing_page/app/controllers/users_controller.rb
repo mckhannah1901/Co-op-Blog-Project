@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     authorize! :view, @user, :message => "Unable to view user"
     # @microposts = @user.microposts.paginate(page: params[:page])
-    # @micropost = @user.microposts
+    @micropost = @user.microposts
     @micropost = current_user.microposts.build if logged_in?
   end
 

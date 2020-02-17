@@ -14,6 +14,11 @@ Rails.application.routes.draw do
   
   resources :users
 
-  resources :microposts, only: [:create, :edit, :destroy]
+  # resources :microposts, only: [:create, :edit, :destroy]
+  resources :microposts
+
+  post '/microposts', to: 'microposts#create'
+  get '/microposts', to: 'microposts#edit'
+  delete '/microposts', to: 'microposts#destroy'
 
 end

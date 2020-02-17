@@ -1,6 +1,6 @@
 class MicropostsController < ApplicationController
 
-    # before_action :logged_in, only: [:create, :destroy]
+    include SessionsHelper
 
     def new
         @micropost = Micropost.new
@@ -9,13 +9,17 @@ class MicropostsController < ApplicationController
     def create
         @micropost = Micropost.new(micropost_params)
         
+        puts("here")
         if @micropost.save
             flash[:success] = "Blog post was successfully created!"
             redirect_to current_user
         else
             flash[:danger] = "Failed to create your blog post"
-            redirect_to current_user
+            render :new
         end
+    end
+
+    def edit
     end
 
     def destroy
@@ -24,6 +28,8 @@ class MicropostsController < ApplicationController
     private
 
         def micropost_params
-            params.require(:micropost).permit(:title, :content)
+            params[:micropost][:user_id] = current_user.id
+            # puts(params)
+            params.require(:micropost).permit(:title, :content, :user_id)
         end
     end

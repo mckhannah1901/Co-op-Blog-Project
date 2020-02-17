@@ -2,28 +2,24 @@
 
     <% if @micropost.errors.any? %>
         <div id="error_explanation">
-        <h2><%= pluralize(@micropost.errors.count, "error") %> prohibited this blog post from being saved:</h2>
+            <h2><%= pluralize(@micropost.errors.count, "error") %> prohibited this blog post from being saved:</h2>
 
-        <ul>
-            <% @micropost.errors.full_messages.each do |message| %>
+            <ul>
+                <% @micropost.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
-            <% end %>
-        </ul>
+                <% end %>
+            </ul>
         </div>
     <% end %>
 
     <div class="field">
-        <%= f.label :title %>
-        <%= f.text_field :title%>
+        <%= f.text_field :title, placeholder: "Title..."%>
     </div>
 
     <div class="field">
-        <%= f.label :content%>
-        <%= f.text_area :content %>
+        <%= f.text_area :content, placeholder: "Blog text..." %>
     </div>
 
-    <div class="actions">
-        <%= f.submit "Publish Blog Post", class: "btn btn-primary" %>
-    </div>
+    <%= f.submit "Publish Blog Post", class: "btn btn-primary" %>
 
 <% end %>

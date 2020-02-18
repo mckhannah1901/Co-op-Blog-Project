@@ -9,7 +9,6 @@ class MicropostsController < ApplicationController
     def create
         @micropost = Micropost.new(micropost_params)
         
-        puts("here")
         if @micropost.save
             flash[:success] = "Blog post was successfully created!"
             redirect_to current_user
@@ -39,7 +38,6 @@ class MicropostsController < ApplicationController
 
         def micropost_params
             params[:micropost][:user_id] = current_user.id
-            # puts(params)
             params.require(:micropost).permit(:title, :content, :user_id)
         end
     end

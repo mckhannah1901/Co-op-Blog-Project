@@ -7,7 +7,9 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    @micropost = current_user.microposts.build if logged_in?
     #authorize! :list, @users
+    #@microposts = @user.microposts.paginate(page: params[:page])
   end
 
   # GET /users/1
@@ -16,6 +18,9 @@ class UsersController < ApplicationController
      
     @user = User.find(params[:id])
     authorize! :view, @user, :message => "Unable to view user"
+    # @microposts = @user.microposts.paginate(page: params[:page])
+    @micropost = @user.microposts
+    @micropost = current_user.microposts.build if logged_in?
   end
 
   # GET /users/new

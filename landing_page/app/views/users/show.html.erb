@@ -20,6 +20,10 @@
 
               <li><%= link_to "Edit Profile", edit_user_url%></li>
 
+              <%# <li><%= link_to "View own Blog Posts"</li> %> 
+
+              <%# <li><%= link_to "View all blogs"</li> %> 
+
               <li class="divider"></li>
 
               <li>
@@ -47,11 +51,22 @@
       </ul>
 
     </nav>
+   
+    
 
   </div>
 
 </header>
 
+<%# <div class="col-md-8">
+      <%# <% if @user.microposts.any? %> 
+  <%# <h3></a>Blog Posts</h3> %>
+  <%# <o1 class="microposts"> %>
+    <%# <%= render @micropost %> 
+  <%# </o1> %>
+        <%# <%= will_paginate @microposts %> 
+      <%# <% end %> 
+<%# </div> %> 
 
 <p id="notice"><%= notice %></p>
 
@@ -69,3 +84,10 @@
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
+<br></br>
+
+<h5>Create a Blog Post!</h5>
+
+<div class="micropost_form">
+      <%= render 'microposts/micropost_form' %>
+</div>

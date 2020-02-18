@@ -8,8 +8,17 @@ Rails.application.routes.draw do
   post '/create_account', to: 'users#new'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
-  delete '/logout', to:'sessions#destroy'
+  get '/logout', to:'sessions#destroy'
+ 
+  
   
   resources :users
-  
+
+  # resources :microposts, only: [:create, :edit, :destroy]
+  resources :microposts
+
+  post '/microposts', to: 'microposts#create'
+  get '/microposts', to: 'microposts#edit'
+  delete '/microposts', to: 'microposts#destroy'
+
 end

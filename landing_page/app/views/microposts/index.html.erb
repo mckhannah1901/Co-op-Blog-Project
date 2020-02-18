@@ -1,5 +1,25 @@
-<% if @microposts.any? %>
-    <o1 class="blogposts">
-        <%= render @microposts %>
-    </o1>
-<% end %>
+<p id="notice"><%= notice%></p>
+
+<h1>Blog Posts</h1>
+
+<table>
+
+    <tbody>
+        <% @microposts.each do |micropost| %>
+            <tr>
+                <br></br>
+                <b><%= "Title: " %></b>
+                <%= micropost.title %>
+                <br></br>
+                <b><%= "Summary: "%></b>
+                <%= micropost.content %>
+                <br></br>
+                <b><%= "Created on: "%></b>
+                <%= micropost.created_at %>
+                <b><%= " By: "%></b>
+                <%= micropost.user_id%>
+                <br></br>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

@@ -13,11 +13,11 @@
     <% end %>
 
     <div class="field">
-        <%= f.text_field :title, placeholder: "Title..."%>
+        <%= f.text_field :title, placeholder: "Title...", content_type: 'text/plain'%>
     </div>
 
     <div class="field">
-        <%= f.text_area :content, placeholder: "Blog text..." %>
+        <%= f.text_area :content, placeholder: "Blog text...", content_type: 'text/rich'%>
     </div>
 
     <%= f.submit "Publish Blog Post", class: "btn btn-primary" %>

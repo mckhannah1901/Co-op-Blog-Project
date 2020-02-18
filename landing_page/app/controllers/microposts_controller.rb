@@ -25,6 +25,16 @@ class MicropostsController < ApplicationController
     def destroy
     end
 
+    def index 
+        @microposts = Micropost.all 
+    end
+
+    def show 
+        @micropost = Micropost.all
+    end
+
+    
+
     private
 
         def micropost_params

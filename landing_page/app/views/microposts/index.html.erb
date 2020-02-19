@@ -2,6 +2,15 @@
 
 <h1>Blog Posts</h1>
 
+<% if logged_in? %>
+
+    <li class="postcreation ">
+
+        <%= link_to "Back to Profile", current_user %>
+
+    </li>
+<% end %>
+
 <table>
 
     <tbody>
@@ -12,7 +21,7 @@
                 <%= micropost.title %>
                 <br></br>
                 <b><%= "Summary: "%></b>
-                <%= micropost.content %>
+                <%= micropost_summary(micropost) %>
                 <br></br>
                 <b><%= "Created on: "%></b>
                 <%= micropost.created_at %>

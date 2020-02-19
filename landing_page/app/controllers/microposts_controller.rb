@@ -11,7 +11,7 @@ class MicropostsController < ApplicationController
         
         if @micropost.save
             flash[:success] = "Blog post was successfully created!"
-            redirect_to current_user
+            redirect_to microposts_path
         else
             flash[:danger] = "Failed to create your blog post"
             render :new
@@ -29,10 +29,14 @@ class MicropostsController < ApplicationController
     end
 
     def show 
-        @micropost = Micropost.all
+        # @micropost = Micropost.all
     end
 
-    
+    def micropost_summary(micropost)
+        ActionController::Base.helpers.strip_tags(micropost.content.to_s.truncate(300))
+    end
+
+    helper_method :micropost_summary
 
     private
 

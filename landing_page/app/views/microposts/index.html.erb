@@ -1,5 +1,37 @@
-<% if @microposts.any? %>
-    <o1 class="blogposts">
-        <%= render @microposts %>
-    </o1>
+<p id="notice"><%= notice%></p>
+
+<h1>Blog Posts</h1>
+
+<% if logged_in? %>
+
+    <li class="postcreation ">
+
+        <%= link_to "Back to Profile", current_user %>
+
+    </li>
 <% end %>
+
+<table>
+
+    <tbody>
+        <% @microposts.each do |micropost| %>
+            <tr>
+                <br></br>
+                <b><%= "Title: " %></b>
+                <%= micropost.title %>
+                <br></br>
+                <b><%= "Summary: "%></b>
+                <%= micropost_summary(micropost) %>
+                <br></br>
+                <b><%= "Created on: "%></b>
+                <%= micropost.created_at %>
+                <b><%= " By: "%></b>
+                <%= User.find_by_id(micropost.user_id).email%>
+                <br></br>
+                <b><%= "Updated at: "%></b>
+                <%= micropost.updated_at %>
+                <br></br>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

@@ -17,7 +17,10 @@
                 <b><%= "Created on: "%></b>
                 <%= micropost.created_at %>
                 <b><%= " By: "%></b>
-                <%= micropost.user_id%>
+                <%= User.find_by_id(micropost.user_id).email%>
+                <br></br>
+                <b><%= "Updated at: "%></b>
+                <%= micropost.updated_at %>
                 <br></br>
             </tr>
         <% end %>

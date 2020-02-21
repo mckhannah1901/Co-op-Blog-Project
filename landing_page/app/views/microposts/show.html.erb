@@ -1,0 +1,31 @@
+<div id="notice"><%= notice %></div>
+
+<p>
+    <h2><%= @micropost.title %></h2>
+    <br></br>
+</p>
+
+<p>
+    <%= @micropost.content %>
+</p>
+
+<p>
+    <strong>Created at:</strong>
+    <%= @micropost.created_at %>
+</p>
+
+<p>
+    <strong>By:</strong>
+    <%= User.find_by_id(@micropost.user_id).email%>
+</p>
+
+<p>
+    <strong>Updated at:</strong>
+    <%= @micropost.updated_at %>
+</p>
+
+<br></br>
+<br></br>
+<br></br>
+
+<b><u><p><%= link_to "Back to List of Blog Posts", microposts_path %></p></u></b>

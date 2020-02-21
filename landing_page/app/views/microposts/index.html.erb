@@ -32,6 +32,11 @@
                 <%= micropost.updated_at %>
                 <br></br>
                 <%= link_to 'Show', micropost%>
+                <% if logged_in? %>
+                    <li class="edit_post">
+                        <%= link_to "Edit", edit_micropost_path(micropost) %>
+                    </li>
+                <% end %>
                 <br></br>
             </tr>
         <% end %>

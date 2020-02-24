@@ -33,9 +33,9 @@
                 <br></br>
                 <%= link_to 'Show', micropost%>
                 <% if logged_in? %>
-                    <li class="edit_post">
+                    <div class="edit_post">
                         <%= link_to "Edit", edit_micropost_path(micropost) %>
-                    </li>
+                    </div>
                 <% end %>
                 <br></br>
             </tr>

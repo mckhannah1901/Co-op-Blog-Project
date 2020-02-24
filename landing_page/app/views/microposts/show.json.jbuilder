@@ -1,0 +1,1 @@
+json.partial1 "microposts/micropost", micropost: @micropost

@@ -18,4 +18,7 @@ class SessionsController < ApplicationController
     redirect_to root_url, info: 'Logout Successful!'
   end
 
+  def update 
+  end
+
 end

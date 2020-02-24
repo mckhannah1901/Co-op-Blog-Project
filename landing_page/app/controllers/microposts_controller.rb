@@ -1,6 +1,6 @@
 class MicropostsController < ApplicationController
 
-    # before_action :set_micropost, only [:show, :edit, :update, :destroy]
+    # before_action :set_micropost, only: [:show, :edit, :update]
 
     include SessionsHelper
 
@@ -21,13 +21,14 @@ class MicropostsController < ApplicationController
     end
 
     def edit
+         @micropost = Micropost.find(params[:id])
     end
 
     def destroy
     end
 
     def index 
-        @microposts = Micropost.all 
+        @microposts = Micropost.order(created_at: :desc) 
     end
 
     def show 
@@ -35,14 +36,15 @@ class MicropostsController < ApplicationController
     end
 
     def update
-        respond_to do |format|
-            if @micropost.update(micropost_params)
-                format.html { redirect_to @micropost, notice: 'Blog post was successfully updated.' }
-                format.json { render :show, status: :ok, location: @micropost }
-            else
-                format.html { render :edit }
-                format.json { render json: @micropost.errors, status: :unprocessable_entity }
-            end
+        @micropost = Micropost.find(params[:id])
+        if @micropost.update(micropost_params)
+            redirect_to micropost_url
+            # format.html { redirect_to @micropost, notice: 'Blog post was successfully updated.' }
+            # format.json { render :show, status: :ok, location: @micropost }
+        else
+            render :edit
+                # format.html { render :edit }
+                # format.json { render json: @micropost.errors, status: :unprocessable_entity }
         end
     end
    
@@ -59,4 +61,5 @@ class MicropostsController < ApplicationController
             params[:micropost][:user_id] = current_user.id
             params.require(:micropost).permit(:title, :content, :user_id)
         end
+
     end

@@ -38,7 +38,7 @@ class MicropostsController < ApplicationController
     def update
         @micropost = Micropost.find(params[:id])
         if @micropost.update(micropost_params)
-            redirect_to micropost_url
+            redirect_to microposts_url
             # format.html { redirect_to @micropost, notice: 'Blog post was successfully updated.' }
             # format.json { render :show, status: :ok, location: @micropost }
         else

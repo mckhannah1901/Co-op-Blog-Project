@@ -22,4 +22,4 @@ import "../stylesheets/application"
 require("trix")
 require("@rails/actiontext")
 
-import "./actiontext.scss";
+// import "./actiontext.scss";

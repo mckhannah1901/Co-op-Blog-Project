@@ -55,6 +55,5 @@ class MicropostsController < ApplicationController
             params[:micropost][:user_id] = current_user.id
             params.require(:micropost).permit(:title, :content, :user_id)
         end
-
     end
-    
+end

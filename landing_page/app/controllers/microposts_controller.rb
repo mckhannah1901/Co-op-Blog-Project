@@ -1,7 +1,5 @@
 class MicropostsController < ApplicationController
 
-    # before_action :set_micropost, only: [:show, :edit, :update]
-
     include SessionsHelper
 
     def new
@@ -38,13 +36,9 @@ class MicropostsController < ApplicationController
     def update
         @micropost = Micropost.find(params[:id])
         if @micropost.update(micropost_params)
-            redirect_to microposts_url
-            # format.html { redirect_to @micropost, notice: 'Blog post was successfully updated.' }
-            # format.json { render :show, status: :ok, location: @micropost }
+            redirect_to micropost_url, success: 'The Blog Post was successfully updated!'
         else
-            render :edit
-                # format.html { render :edit }
-                # format.json { render json: @micropost.errors, status: :unprocessable_entity }
+            render :edit       
         end
     end
    
@@ -61,5 +55,4 @@ class MicropostsController < ApplicationController
             params[:micropost][:user_id] = current_user.id
             params.require(:micropost).permit(:title, :content, :user_id)
         end
-
     end

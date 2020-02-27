@@ -1,7 +1,5 @@
 class Micropost < ApplicationRecord
-  # belongs_to :user
-
-  default_scope -> { order(create_at: :desc)}
+  belongs_to :user
 
   validates :user_id, presence: true
 

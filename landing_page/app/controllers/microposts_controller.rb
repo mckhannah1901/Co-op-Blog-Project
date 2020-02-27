@@ -19,18 +19,29 @@ class MicropostsController < ApplicationController
     end
 
     def edit
+         @micropost = Micropost.find(params[:id])
     end
 
     def destroy
     end
 
     def index 
-        @microposts = Micropost.all 
+        @microposts = Micropost.order(created_at: :desc) 
     end
 
     def show 
         @micropost = Micropost.find(params[:id])
     end
+
+    def update
+        @micropost = Micropost.find(params[:id])
+        if @micropost.update(micropost_params)
+            redirect_to micropost_url
+        else
+            render :edit       
+        end
+    end
+   
 
     def micropost_summary(micropost)
         ActionController::Base.helpers.strip_tags(micropost.content.to_s.truncate(300))

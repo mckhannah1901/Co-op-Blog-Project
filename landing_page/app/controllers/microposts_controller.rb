@@ -30,7 +30,7 @@ class MicropostsController < ApplicationController
     end
 
     def index 
-        @microposts = Micropost.order(created_at: :desc) 
+        @microposts = Micropost.kept.order(created_at: :desc) 
     end
 
     def show 

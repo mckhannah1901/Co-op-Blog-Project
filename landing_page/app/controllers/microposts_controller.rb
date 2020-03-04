@@ -1,5 +1,7 @@
 class MicropostsController < ApplicationController
 
+    before_action :set_micropost, only: [:show, :edit, :update, :destroy]
+
     include SessionsHelper
 
     def new
@@ -23,6 +25,8 @@ class MicropostsController < ApplicationController
     end
 
     def destroy
+        @micropost.discard
+        redirect_to microposts_url, success: 'Blog post was soft deleted'
     end
 
     def index 
@@ -54,5 +58,9 @@ class MicropostsController < ApplicationController
         def micropost_params
             params[:micropost][:user_id] = current_user.id
             params.require(:micropost).permit(:title, :content, :user_id)
+        end
+
+        def set_micropost
+            @micropost = Micropost.find(params[:id])
         end
     end

@@ -3,24 +3,9 @@ class Ability
 
   def initialize(user)
 
-    # if @user.email == "admin@bloggingengine.com"
-    #   user.admin
-    # end
-
     can :view, User do |u|
        user.present? && user.id == u.id  
     end
-
-    
-
-    #can :list, Users if user.admin?
-    #if user.present?
-      #can :view, User
-    #   can :view, 
-    #   if user.admin?
-    #     can :manage, :all
-    #   end
-    #end
 
     # Define abilities for the passed in user here. For example:
     #

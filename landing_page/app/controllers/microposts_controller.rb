@@ -1,6 +1,6 @@
 class MicropostsController < ApplicationController
 
-    before_action :set_micropost, only: [:show, :edit, :update, :destroy]
+    before_action :set_micropost, only: [:show, :edit, :update, :destroy, :recover]
 
     include SessionsHelper
 
@@ -26,8 +26,16 @@ class MicropostsController < ApplicationController
 
     def destroy
         @micropost.discard
-        redirect_to microposts_url, success: 'Blog post was soft deleted'
+        flash[:warning] = "Blog post deleted. Would you like to recover it? This option is only available until you leave/refresh the page. #{view_context.link_to('Undo', recover_micropost_path(@micropost))}".html_safe
+        redirect_to microposts_url
     end
+
+    def recover
+        @micropost.undiscard
+        redirect_to microposts_url, success: 'Blog post was recovered and restored'
+    end
+
+    helper_method :recover
 
     def index 
         @microposts = Micropost.kept.order(created_at: :desc) 
@@ -46,7 +54,6 @@ class MicropostsController < ApplicationController
         end
     end
    
-
     def micropost_summary(micropost)
         ActionController::Base.helpers.strip_tags(micropost.content.to_s.truncate(300))
     end

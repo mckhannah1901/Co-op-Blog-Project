@@ -1,0 +1,2 @@
+module ArchivedpostsHelper
+end

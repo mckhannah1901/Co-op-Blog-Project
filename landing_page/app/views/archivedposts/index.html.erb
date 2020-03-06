@@ -1,0 +1,37 @@
+<h1>Archived Posts</h1>
+
+<% if logged_in? %>
+
+    <li class="archived_posts ">
+
+        <%= link_to "Back to Profile", current_user %>
+
+    </li>
+<% end %>
+
+<table>
+
+    <tbody>
+        <% @microposts_archiveable.each do |micropost| %>
+            <tr>
+                <br></br>
+                <b><%= "Title: " %></b>
+                <%= micropost.title %>
+                <br></br>
+                <b><%= "Summary: "%></b>
+                <%= micropost_summary(micropost) %>
+                <br></br>
+                <b><%= "Created on: "%></b>
+                <%= micropost.created_at %>
+                <b><%= " By: "%></b>
+                <%= User.find_by_id(micropost.user_id).email%>
+                <br></br>
+                <b><%= "Updated at: "%></b>
+                <%= micropost.updated_at %>
+                <br></br>
+                <%= link_to 'Show', micropost%>
+                <br></br>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

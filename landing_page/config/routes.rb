@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :archivedposts
   devise_for :models
   root to: 'pages#home'
 
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
   
   
   resources :users 
+  resources :archivedposts
 
 
 
@@ -28,5 +30,4 @@ Rails.application.routes.draw do
   get '/microposts', to: 'microposts#edit'
   delete '/microposts', to: 'microposts#destroy'
   get '/microposts', to: 'microposts#recover'
-
 end

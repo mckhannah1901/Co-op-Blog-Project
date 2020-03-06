@@ -1,5 +1,7 @@
 class MicropostsController < ApplicationController
 
+    before_action :set_micropost, only: [:show, :edit, :update, :destroy, :recover]
+
     include SessionsHelper
 
     def new
@@ -23,10 +25,20 @@ class MicropostsController < ApplicationController
     end
 
     def destroy
+        @micropost.discard
+        flash[:warning] = "Blog post deleted. Would you like to recover it? This option is only available until you leave/refresh the page. #{view_context.link_to('Undo', recover_micropost_path(@micropost))}".html_safe
+        redirect_to microposts_url
     end
 
+    def recover
+        @micropost.undiscard
+        redirect_to microposts_url, success: 'Blog post was recovered and restored'
+    end
+
+    helper_method :recover
+
     def index 
-        @microposts = Micropost.order(created_at: :desc) 
+        @microposts = Micropost.kept.order(created_at: :desc) 
     end
 
     def show 
@@ -42,7 +54,6 @@ class MicropostsController < ApplicationController
         end
     end
    
-
     def micropost_summary(micropost)
         ActionController::Base.helpers.strip_tags(micropost.content.to_s.truncate(300))
     end
@@ -54,5 +65,9 @@ class MicropostsController < ApplicationController
         def micropost_params
             params[:micropost][:user_id] = current_user.id
             params.require(:micropost).permit(:title, :content, :user_id)
+        end
+
+        def set_micropost
+            @micropost = Micropost.find(params[:id])
         end
     end

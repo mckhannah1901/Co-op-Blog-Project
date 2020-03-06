@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_17_125834) do
+ActiveRecord::Schema.define(version: 2020_03_03_155333) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -49,7 +49,9 @@ ActiveRecord::Schema.define(version: 2020_02_17_125834) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "discarded_at"
     t.index "\"user_id\", \"createdat\"", name: "index_microposts_on_user_id_and_createdat"
+    t.index ["discarded_at"], name: "index_microposts_on_discarded_at"
     t.index ["user_id"], name: "index_microposts_on_user_id"
   end
 

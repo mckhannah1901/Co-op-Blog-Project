@@ -18,12 +18,4 @@ class ApplicationController < ActionController::Base
       response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
     end
 
-    #before_action :ensure_login
-
-    #protected
-
-    #def ensure_login
-     # redirect_to login_path unless session[:user_id]
-    #end
-
 end

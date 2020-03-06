@@ -36,6 +36,9 @@
                     <div class="edit_post">
                         <%= link_to "Edit", edit_micropost_path(micropost) %>
                     </div>
+                    <div class="delete_post">
+                        <%= link_to 'Delete', micropost, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    </div>
                 <% end %>
                 <br></br>
             </tr>

@@ -12,13 +12,21 @@ Rails.application.routes.draw do
  
   
   
-  resources :users
+  resources :users 
+
+
+
 
   # resources :microposts, only: [:create, :edit, :destroy]
-  resources :microposts
+  resources :microposts do
+    member do
+      get 'recover'
+    end
+  end
 
   post '/microposts', to: 'microposts#create'
   get '/microposts', to: 'microposts#edit'
   delete '/microposts', to: 'microposts#destroy'
+  get '/microposts', to: 'microposts#recover'
 
 end

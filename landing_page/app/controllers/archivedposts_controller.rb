@@ -4,14 +4,21 @@ class ArchivedpostsController < ApplicationController
   # GET /archivedposts
   # GET /archivedposts.json
   def index
-    @microposts = Micropost.kept.order(created_at: :desc) 
-    @microposts_archiveable = @microposts.group_by { |t| t.created_at > (Time.now-7.days)}
+    # @microposts = Micropost.kept.order(created_at: :desc) 
+    # @microposts_archiveable = @microposts.where { |t| t.created_at > (Time.now-7.days)}
+    @microposts_archiveable  = Micropost.kept.where("created_at < ?", Time.now-7.days).order(created_at: :desc)
   end
 
   # GET /archivedposts/1
   # GET /archivedposts/1.json
   def show
   end
+
+  def micropost_summary(micropost)
+    ActionController::Base.helpers.strip_tags(micropost.content.to_s.truncate(300))
+  end
+
+  helper_method :micropost_summary
 
   # GET /archivedposts/new
   # def new

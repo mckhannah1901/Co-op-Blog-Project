@@ -45,3 +45,12 @@
         <% end %>
     </tbody>
 </table>
+
+<% if !logged_in? %>
+
+    <div class="home_page">
+
+        <b><u><%= link_to 'Home Page', root_url %></b></u>
+
+    </div>
+<% end %>

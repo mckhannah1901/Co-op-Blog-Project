@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   
-  resources :archivedposts
   devise_for :models
   root to: 'pages#home'
 

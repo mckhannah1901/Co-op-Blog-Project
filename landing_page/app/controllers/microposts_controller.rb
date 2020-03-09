@@ -38,7 +38,11 @@ class MicropostsController < ApplicationController
     helper_method :recover
 
     def index 
-        @microposts = Micropost.kept.order(created_at: :desc) 
+        if params[:archived] == "true"
+            @microposts = Micropost.kept.where("created_at < ?", Time.now-7.days).order(created_at: :desc)
+        else
+            @microposts = Micropost.kept.where("created_at > ?", Time.now-7.days).order(created_at: :desc)
+        end       
     end
 
     def show 

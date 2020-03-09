@@ -9,7 +9,10 @@
 <br></br>
 
 <h3><center>Alternatively you can view blog posts as a guest!</center></h3>
+<br></br>
 <center><%= link_to "View Blog Posts", microposts_path, class: 'btn_all_posts' %></center>
+<br></br>
+<center><%= link_to "View Archived Posts", microposts_path(@micropost, :archived => 'true'), class: 'btn_archived_posts' %></center>
 <br></br>
 
 <center><img src="https://miro.medium.com/max/1275/1*6d5dw6dPhy4vBp2vRW6uzw.png"></center>

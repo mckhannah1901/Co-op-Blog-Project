@@ -37,12 +37,10 @@ class MicropostsController < ApplicationController
 
     helper_method :recover
 
-    def index 
-        
+    def index
         comparison = params[:archived] == "true" ? "<=" : ">"
         query = "created_at #{comparison} ?"
         @microposts = Micropost.order(created_at: :desc).kept.where(query, Time.now-7.days)
-        end       
     end
 
     def show 

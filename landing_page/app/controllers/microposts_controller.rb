@@ -39,10 +39,9 @@ class MicropostsController < ApplicationController
 
     def index 
         
-        if params[:archived] == "true"
-            @microposts = Micropost.order(created_at: :desc).kept.where("created_at <= ?", Time.now-7.days)
-        else
-            @microposts = Micropost.kept.where("created_at > ?", Time.now-7.days).order(created_at: :desc)
+        comparison = params[:archived] == "true" ? "<=" : ">"
+        query = "created_at #{comparison} ?"
+        @microposts = Micropost.order(created_at: :desc).kept.where(query, Time.now-7.days)
         end       
     end
 

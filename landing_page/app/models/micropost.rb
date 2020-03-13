@@ -9,8 +9,6 @@ class Micropost < ApplicationRecord
   validates :content, presence: true
   has_rich_text :content
 
-  def archive
-    update_archiveable_status!(:archived, true)
-  end
+  attribute :archived, :boolean, default: false
 
 end

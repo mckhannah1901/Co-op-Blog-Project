@@ -19,7 +19,7 @@
 
 # Learn more: http://github.com/javan/whenever
 
-set :environment, "development"
+set :environment, 'development'
 
 every 4.hours do
     rake 'archive'

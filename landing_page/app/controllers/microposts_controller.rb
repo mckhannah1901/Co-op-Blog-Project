@@ -41,13 +41,22 @@ class MicropostsController < ApplicationController
     helper_method :recover
 
     def index 
-        @microposts = Micropost.kept.order(created_at: :desc) 
+        archived = params[:archived] == "true" ? "true" : "false"
+        archive = "archived = #{archived} ?"
+        @microposts = Micropost.kept.where("archived = ?", archived).order(created_at: :desc)
+        # @microposts = Micropost.kept.where("archived = ?", archived).order(created_at: :desc)
+        # @microposts = Micropost.kept.where("archived = true").order(created_at: :desc)
+        # archived = params[:archived] == "true" ? "true" : "false"
+        # @microposts = Micropost.kept.where("archived = ?", archived).order(created_at: :desc)
 
-        if params[:archived] == "true"
-            Rake::Task['archive'].invoke
-        else
-            @microposts
-        end
+        # Book.where("LENGTH(title) > ?", params[:min_length])
+
+
+        # if params[:archived] == "true"
+        #     @microposts = Micropost.kept.where(archived: true).order(created_at: :desc)
+        # else
+        #     @microposts = Micropost.kept.where(archived: false).order(created_at: :desc)
+        # end
     end
 
     def show 

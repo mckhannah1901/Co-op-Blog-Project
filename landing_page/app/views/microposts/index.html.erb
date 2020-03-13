@@ -1,6 +1,7 @@
 <p id="notice"><%= notice%></p>
 
-<h1>Blog Posts</h1>
+
+<h1><%= @archived ? "Archived " : "Blog " %>Posts</h1>
 
 <% if logged_in? %>
 

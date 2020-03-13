@@ -3,6 +3,9 @@ class MicropostsController < ApplicationController
     before_action :set_micropost, only: [:show, :edit, :update, :destroy, :recover]
 
     include SessionsHelper
+    require 'rake'
+
+    load './lib/tasks/archive_posts.rake'
 
     def new
         @micropost = Micropost.new
@@ -39,6 +42,12 @@ class MicropostsController < ApplicationController
 
     def index 
         @microposts = Micropost.kept.order(created_at: :desc) 
+
+        if params[:archived] == "true"
+            Rake::Task['archive'].invoke
+        else
+            @microposts
+        end
     end
 
     def show 

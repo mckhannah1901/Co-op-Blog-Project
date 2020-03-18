@@ -3,9 +3,6 @@ class MicropostsController < ApplicationController
     before_action :set_micropost, only: [:show, :edit, :update, :destroy, :recover]
 
     include SessionsHelper
-    require 'rake'
-
-    load './lib/tasks/archive_posts.rake'
 
     def new
         @micropost = Micropost.new

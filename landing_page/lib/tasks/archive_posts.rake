@@ -7,4 +7,6 @@ task archive: :environment do
         archiveable_post.archived = true
         archiveable_post.save
     end
+
+    puts "Number of posts to be archived is: #{archiveable_posts.count}"
 end

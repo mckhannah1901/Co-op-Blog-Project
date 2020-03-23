@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-    
+
     context "create a new user account with acceptable credentials" do
 
         it "successfully adds a new user" do
@@ -24,10 +24,4 @@ RSpec.describe UsersController, type: :controller do
         end
     end
 
-    context "the index for the users currently saved in the database" do
-
-        it "displays all users in the database" do
-        end
-
-    end
 end

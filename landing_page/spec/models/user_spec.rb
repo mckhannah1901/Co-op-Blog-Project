@@ -55,6 +55,11 @@ RSpec.describe User, type: :model do
             expect(user2).to eq(false)
         end
 
+        it "fails if the email is longer than 100 characters" do
+            user.email = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz@gmail.abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+            expect(user).to_not be_valid
+        end
+
         it "fails if no email is present" do
             user.email = nil
             expect(user).to_not be_valid

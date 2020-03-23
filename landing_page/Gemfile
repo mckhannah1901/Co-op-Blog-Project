@@ -57,6 +57,10 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+<<<<<<< HEAD
 gem 'pry'
 gem 'pry-nav'
 gem 'simplecov', require: false, group: :test
+=======
+gem 'whenever', require: false
+>>>>>>> e82d863488c0ba8cc8f74502114a1cb3062dcfd0

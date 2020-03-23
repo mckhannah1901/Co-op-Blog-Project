@@ -70,7 +70,6 @@ GEM
     byebug (11.1.0)
     cancan (1.6.10)
     chronic (0.10.2)
-    coderay (1.1.2)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
     devise (4.7.1)
@@ -208,10 +207,6 @@ GEM
       sprockets-rails
       tilt
     semantic_range (2.3.0)
-    simplecov (0.18.5)
-      docile (~> 1.1)
-      simplecov-html (~> 0.11)
-    simplecov-html (0.12.2)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -279,7 +274,6 @@ DEPENDENCIES
   rubocop
   rubocop-faker
   sass-rails (>= 6)
-  simplecov
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3 (~> 1.4)

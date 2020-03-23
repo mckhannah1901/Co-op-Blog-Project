@@ -3,15 +3,11 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    # @micropost = current_user.microposts.build if logged_in?
   end
 
   def show 
     authorize! :view, @user, :message => "Unable to view user" 
     @user = User.find(params[:id])
-    
-    # @micropost = @user.microposts
-    # @micropost = current_user.microposts.build if logged_in?
   end
 
   def new
@@ -54,12 +50,10 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:first_name, :second_name, :email, :password, :password_confirmation)
     end

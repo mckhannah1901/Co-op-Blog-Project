@@ -9,9 +9,8 @@ RSpec.describe UsersController, type: :controller do
         end
 
         it "logs the user in upon account creation" do
-            session_id  = session[:user_id]
             create_new_user
-            expect(session[:user_id]).to_not eq(session_id)
+            expect(session[:user_id]).to_not be_nil
         end
 
         it "redirects a new user to their profile page upon creation" do

@@ -18,9 +18,12 @@ RSpec.describe UsersController, type: :controller do
             expect(response).to redirect_to(assigns(:user))
         end
 
-        def create_new_user
-            post :create, params: {:user => {:first_name => 'Testing', :second_name => 'Tested', :email => 'testing@tested.test', :password => 'password', :password_confirmation => 'password'}}
-        end
+        private
+
+            def create_new_user
+                post :create, params: {:user => {:first_name => 'Testing', :second_name => 'Tested', :email => 'testing@tested.test', :password => 'password', :password_confirmation => 'password'}}
+            end
+
     end
 
     context "GET #index" do

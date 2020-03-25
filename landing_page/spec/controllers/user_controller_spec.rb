@@ -24,4 +24,13 @@ RSpec.describe UsersController, type: :controller do
         end
     end
 
+    context "GET #index" do
+
+        it "expects a redirect sponse to be 200" do
+            get :index
+            expect(response.status).to eq(200)
+        end
+
+    end
+
 end

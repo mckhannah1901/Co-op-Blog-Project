@@ -6,11 +6,6 @@ RSpec.describe User, type: :model do
 
     context "don't create a user account with unacceptable credentials" do
 
-        let(:user) do
-            User.new(:first_name => 'Testing', :second_name => 'Tested', :email => 'testing@tested.test',
-                    :password => 'password', :password_confirmation => 'password')
-        end
-
         it "fails if the password and password confirmation does not match" do
             user.password_confirmation = "password123"
             expect(user).to_not be_valid

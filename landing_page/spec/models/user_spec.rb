@@ -4,7 +4,7 @@ RSpec.describe User, type: :model do
 
     let (:user){User.new}
 
-    context "don't create a user account with unacceptable credentials" do
+    context "user account with unacceptable data" do
 
         it "fails if the password and password confirmation does not match" do
             user.password_confirmation = "password123"

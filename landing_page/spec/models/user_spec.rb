@@ -21,22 +21,16 @@ RSpec.describe User, type: :model do
             expect(user).to_not be_valid
         end
 
-        it "fails if the email does not match the required format - 1" do
+        it "fails if the email does not match the required format" do
             user.email = "1.com"
             expect(user).to_not be_valid
-        end  
 
-        it "fails if the email does not match the required format - 2" do
             user.email = "@gmail.com"
             expect(user).to_not be_valid
-        end
 
-        it "fails if the email does not match the required format - 3" do
             user.email = "1@gmail"
             expect(user).to_not be_valid
-        end
 
-        it "fails if the email does not match the required format - 4" do
             user.email = "1"
             expect(user).to_not be_valid
         end

@@ -38,10 +38,10 @@ RSpec.describe User, type: :model do
         it "fails if the email has already been taken up by another user" do
             User.new(:first_name => 'Testing', :second_name => 'Tested', :email => 'testing@tested.test',
                     :password => 'password', :password_confirmation => 'password').save
-            user2 = User.new(:first_name => 'Second', :second_name => 'Test', :email => 'testing@tested.test',
+            user_created = User.new(:first_name => 'Second', :second_name => 'Test', :email => 'testing@tested.test',
                     :password => 'password123', :password_confirmation => 'password123').save
 
-            expect(user2).to eq(false)
+            expect(user_created).to eq(false)
         end
 
         it "fails if the email is longer than 100 characters" do

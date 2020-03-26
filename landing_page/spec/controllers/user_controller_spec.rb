@@ -20,72 +20,66 @@ RSpec.describe UsersController, type: :controller do
 
     end
 
-    context "GET #index" do
+    context "FactoryBot tests" do
 
-        before :each do
-            @user = FactoryBot.create(:user)
-            session[:user_id] = @user.id
+    before :each do
+        @user = FactoryBot.create(:user)
+        session[:user_id] = @user.id
+        login(@user)
+    end
+
+        context "GET #index" do
+
+            it "assigns users" do
+                get :index
+                expect(assigns(:users)).to eq([@user])
+            end
+
+            it "renders the template for the index" do
+                get :index
+                expect(response).to render_template('index')
+            end
+
+            it "returns a succesful response" do
+                get :index
+                expect(response.status).to eq(200)
+            end
+
         end
 
-        it "assigns users" do
-            get :index
-            expect(assigns(:users)).to eq([@user])
+        context "GET #show" do
+
+            it "shows a user their profile" do
+                get :show, params: { id: @user.id }
+                expect(response).to render_template('show')
+                expect(response.status).to eq(200)
+            end
+
         end
 
-        it "renders the template for the index" do
-            get :index
-            expect(response).to render_template('index')
+        context "DELETE #destroy" do
+
+            it "deletes a user from the database" do
+                expect{delete :destroy, params: { id: @user.id }}.to change(User, :count).by(-1)
+            end
+
         end
 
-        it "returns a succesful response" do
-            get :index
-            expect(response.status).to eq(200)
+        context "PUT #update" do
+
+            it "allows a user to update their data" do
+                put :update, params: { :id => @user.id, :user => { :first_name => "Jane", :second_name => "Doe",
+                                    :email => "factorybot@test.com", :password => "password", :password_confirmation => "password"}}
+                @user.reload
+
+                expect(@user.first_name).to eq("Jane")
+                expect(response).to redirect_to(assigns(:user))
+            end
+
         end
 
     end
 
-    context "GET #show" do
-
-        it "shows a user their profile" do
-            user = FactoryBot.create :user
-            user.save
-            login(user)
-
-            get :show, params: { id: user.id }
-            expect(response).to render_template('show')
-            expect(response.status).to eq(200)
-        end
-
-    end
-
-    context "DELETE #destroy" do
-
-        it "deletes a user from the database" do
-            user = FactoryBot.create :user
-            user.save
-            login(user)
-
-            expect{delete :destroy, params: { id: user.id }}.to change(User, :count).by(-1)
-        end
-
-    end
-
-    context "PUT #update" do
-
-        it "allows a user to update their data" do
-            user = FactoryBot.create :user, first_name: "Not Jane"
-            user.save
-            login(user)
-
-            put :update, params: { :id => user.id, :user => { :first_name => "Jane", :second_name => "Doe",
-                                :email => "factorybot@test.com", :password => "password", :password_confirmation => "password"}}
-            user.reload
-
-            expect(user.first_name).to eq("Jane")
-            expect(response).to redirect_to(assigns(:user))
-        end
-
-    end
 
     private
 
@@ -94,7 +88,7 @@ RSpec.describe UsersController, type: :controller do
         end
 
         def login(user)
-            session[:user_id] = user.id
+            session[:user_id] = @user.id
         end
 
 end

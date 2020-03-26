@@ -72,6 +72,12 @@ RSpec.describe UsersController, type: :controller do
                 expect(assigns(:users)).to be_nil
             end
 
+            it "fails if a user is not logged in and tries to delete their data" do
+                logout(@user)
+
+                expect{delete :destroy, params: { id: @user.id }}.to change(User, :count).by(0)
+            end
+
         end
 
         context "PUT #update" do

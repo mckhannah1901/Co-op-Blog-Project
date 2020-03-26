@@ -45,6 +45,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    authorize! :update, @user, :message => "Unable to update user"
+    @user = User.find(params[:id])
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }

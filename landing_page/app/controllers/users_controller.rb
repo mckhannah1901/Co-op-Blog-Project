@@ -32,7 +32,6 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
     authorize! :update, @user, :message => "Unable to update user"
-    @user = User.find(params[:id])
 
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -46,7 +45,7 @@ class UsersController < ApplicationController
 
   def destroy
     authorize! :update, @user, :message => "Unable to update user"
-    @user = User.find(params[:id])
+
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }

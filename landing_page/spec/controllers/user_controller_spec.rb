@@ -22,7 +22,22 @@ RSpec.describe UsersController, type: :controller do
 
     context "GET #index" do
 
-        it "shows the list of users, expects a redirect response to be 200" do
+        before :each do
+            @user = FactoryBot.create(:user)
+            session[:user_id] = @user.id
+        end
+
+        it "assigns users" do
+            get :index
+            expect(assigns(:users)).to eq([@user])
+        end
+
+        it "renders the template for the index" do
+            get :index
+            expect(response).to render_template('index')
+        end
+
+        it "returns a succesful response" do
             get :index
             expect(response.status).to eq(200)
         end
@@ -31,12 +46,13 @@ RSpec.describe UsersController, type: :controller do
 
     context "GET #show" do
 
-        it "shows a user their profile, expect redirect response to be 200" do
+        it "shows a user their profile" do
             user = FactoryBot.create :user
             user.save
             login(user)
 
             get :show, params: { id: user.id }
+            expect(response).to render_template('show')
             expect(response.status).to eq(200)
         end
 

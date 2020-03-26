@@ -40,7 +40,7 @@ RSpec.describe UsersController, type: :controller do
                 expect(response).to render_template('index')
             end
 
-            it "returns a succesful response" do
+            it "returns a successful response" do
                 get :index
                 expect(response.status).to eq(200)
             end

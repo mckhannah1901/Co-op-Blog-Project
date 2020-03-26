@@ -22,87 +22,87 @@ RSpec.describe UsersController, type: :controller do
 
     context "FactoryBot tests" do
 
-    before :each do
-        @user = FactoryBot.create(:user)
-        session[:user_id] = @user.id
-        login(@user)
-    end
-
-        context "GET #index" do
-
-            it "assigns users" do
-                get :index
-                expect(assigns(:users)).to eq([@user])
-            end
-
-            it "renders the template for the index" do
-                get :index
-                expect(response).to render_template('index')
-            end
-
-            it "returns a successful response" do
-                get :index
-                expect(response.status).to eq(200)
-            end
-
+        before :each do
+            @user = FactoryBot.create(:user)
+            session[:user_id] = @user.id
+            login(@user)
         end
 
-        context "GET #show" do
+            context "GET #index" do
 
-            it "shows a user their profile" do
-                get :show, params: { id: @user.id }
-                expect(response).to render_template('show')
-                expect(response.status).to eq(200)
+                it "lists the users" do
+                    get :index
+                    expect(assigns(:users)).to eq([@user])
+                end
+
+                it "renders the template for the index" do
+                    get :index
+                    expect(response).to render_template('index')
+                end
+
+                it "returns a successful response" do
+                    get :index
+                    expect(response.status).to eq(200)
+                end
+
             end
 
-            it "won't show a user's profile if not logged in" do
-                logout(@user)
+            context "GET #show" do
 
-                get :show, params: { id: @user.id }
-                expect(response).to_not render_template('show')
-                expect(response.status).to eq(302)
+                it "shows a user their profile" do
+                    get :show, params: { id: @user.id }
+                    expect(response).to render_template('show')
+                    expect(response.status).to eq(200)
+                end
+
+                it "won't show a user's profile if not logged in" do
+                    logout(@user)
+
+                    get :show, params: { id: @user.id }
+                    expect(response).to_not render_template('show')
+                    expect(response.status).to eq(302)
+                end
+
             end
 
-        end
+            context "DELETE #destroy" do
 
-        context "DELETE #destroy" do
+                it "deletes a user from the database" do
+                    expect{delete :destroy, params: { id: @user.id }}.to change(User, :count).by(-1)
+                    expect(assigns(:users)).to be_nil
+                end
 
-            it "deletes a user from the database" do
-                expect{delete :destroy, params: { id: @user.id }}.to change(User, :count).by(-1)
-                expect(assigns(:users)).to be_nil
+                it "fails if a user is not logged in and tries to delete their data" do
+                    logout(@user)
+
+                    expect{delete :destroy, params: { id: @user.id }}.to change(User, :count).by(0)
+                end
+
             end
 
-            it "fails if a user is not logged in and tries to delete their data" do
-                logout(@user)
+            context "PUT #update" do
 
-                expect{delete :destroy, params: { id: @user.id }}.to change(User, :count).by(0)
+                it "allows a user to update their data" do
+                    put :update, params: { :id => @user.id, :user => { :first_name => "Jane", :second_name => "Doe",
+                                        :email => "factorybot@test.com", :password => "password", :password_confirmation => "password"}}
+                    @user.reload
+
+                    expect(@user.first_name).to eq("Jane")
+                    expect(response).to redirect_to(assigns(:user))
+                end
+
+                it "fails if a user is not logged in and tries to update their data" do
+                    logout(@user)
+                    put :update, params: { :id => @user.id, :user => { :first_name => "Jane", :second_name => "Doe",
+                        :email => "factorybot@test.com", :password => "password", :password_confirmation => "password"}}
+                    @user.reload
+
+                    expect(@user.first_name).to_not eq("Jane")
+                    expect(response).to_not redirect_to(assigns(:user))
+                    expect(response.status).to eq(302)
+                end
+
             end
-
-        end
-
-        context "PUT #update" do
-
-            it "allows a user to update their data" do
-                put :update, params: { :id => @user.id, :user => { :first_name => "Jane", :second_name => "Doe",
-                                    :email => "factorybot@test.com", :password => "password", :password_confirmation => "password"}}
-                @user.reload
-
-                expect(@user.first_name).to eq("Jane")
-                expect(response).to redirect_to(assigns(:user))
-            end
-
-            it "fails if a user is not logged in and tries to update their data" do
-                logout(@user)
-                put :update, params: { :id => @user.id, :user => { :first_name => "Jane", :second_name => "Doe",
-                    :email => "factorybot@test.com", :password => "password", :password_confirmation => "password"}}
-                @user.reload
-
-                expect(@user.first_name).to_not eq("Jane")
-                expect(response).to_not redirect_to(assigns(:user))
-                expect(response.status).to eq(302)
-            end
-
-        end
 
     end
 

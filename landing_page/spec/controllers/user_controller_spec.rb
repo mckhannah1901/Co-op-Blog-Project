@@ -33,15 +33,6 @@ RSpec.describe UsersController, type: :controller do
                 it "lists the users" do
                     get :index
                     expect(assigns(:users)).to eq([@user])
-                end
-
-                it "renders the template for the index" do
-                    get :index
-                    expect(response).to render_template('index')
-                end
-
-                it "returns a successful response" do
-                    get :index
                     expect(response.status).to eq(200)
                 end
 

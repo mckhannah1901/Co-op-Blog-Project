@@ -69,6 +69,7 @@ RSpec.describe UsersController, type: :controller do
 
             it "deletes a user from the database" do
                 expect{delete :destroy, params: { id: @user.id }}.to change(User, :count).by(-1)
+                expect(assigns(:users)).to be_nil
             end
 
         end

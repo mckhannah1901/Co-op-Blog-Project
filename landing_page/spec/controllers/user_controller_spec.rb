@@ -57,12 +57,12 @@ RSpec.describe UsersController, type: :controller do
     context "PUT #update" do
 
         it "allows a user to update their data" do
-            user = FactoryBot.create :user
+            user = FactoryBot.create :user, first_name: "Not Jane"
             user.save
             login(user)
 
             put :update, params: { :id => user.id, :user => { :first_name => "Jane", :second_name => "Doe",
-                                :email => "factorybot@test.com", :password => "password", :password => "password"}}
+                                :email => "factorybot@test.com", :password => "password", :password_confirmation => "password"}}
             user.reload
 
             expect(user.first_name).to eq("Jane")

@@ -55,6 +55,14 @@ RSpec.describe UsersController, type: :controller do
                 expect(response.status).to eq(200)
             end
 
+            it "won't show a user's profile if not logged in" do
+                logout(@user)
+
+                get :show, params: { id: @user.id }
+                expect(response).to_not render_template('show')
+                expect(response.status).to eq(302)
+            end
+
         end
 
         context "DELETE #destroy" do
@@ -76,6 +84,17 @@ RSpec.describe UsersController, type: :controller do
                 expect(response).to redirect_to(assigns(:user))
             end
 
+            it "fails if a user is not logged in and tries to update their data" do
+                logout(@user)
+                put :update, params: { :id => @user.id, :user => { :first_name => "Jane", :second_name => "Doe",
+                    :email => "factorybot@test.com", :password => "password", :password_confirmation => "password"}}
+                @user.reload
+
+                expect(@user.first_name).to_not eq("Jane")
+                expect(response).to_not redirect_to(assigns(:user))
+                expect(response.status).to eq(302)
+            end
+
         end
 
     end
@@ -89,6 +108,10 @@ RSpec.describe UsersController, type: :controller do
 
         def login(user)
             session[:user_id] = @user.id
+        end
+
+        def logout(user)
+            session[:user_id] = nil
         end
 
 end

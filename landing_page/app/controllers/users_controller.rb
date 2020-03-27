@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    authorize! :update, @user, :message => "Unable to update user"
+    authorize! :update, @user, :message => "Unable to destroy user"
 
     @user.destroy
     respond_to do |format|

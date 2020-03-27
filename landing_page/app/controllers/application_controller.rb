@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   include SessionsHelper
 
-  rescue_from CanCan::AccessDenied do |_exception|
+  rescue_from CanCan::AccessDenied do
     flash[:danger] = 'Access denied!'
     redirect_to login_path
   end

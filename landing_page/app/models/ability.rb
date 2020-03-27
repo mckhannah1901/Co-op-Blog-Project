@@ -3,8 +3,8 @@ class Ability
 
   def initialize(user)
 
-    can :view, User do |u|
-       user.present? && user.id == u.id  
+    can [:view, :update, :destroy], User do |u|
+       user.present? && user.id == u.id
     end
 
     # Define abilities for the passed in user here. For example:

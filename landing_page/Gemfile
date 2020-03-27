@@ -9,7 +9,7 @@ gem 'bootstrap-sass', '3.4.1'
 gem 'cancan'
 gem 'devise'
 gem 'faker'
-gem 'rubocop'
+gem 'rubocop', require: false
 gem 'rubocop-faker'
 gem 'will_paginate'
 gem 'actionview'

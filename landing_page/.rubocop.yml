@@ -1,0 +1,54 @@
+AllCops:
+  Include:
+    - '**/*.rb'
+    - 'archive_posts.rake'
+  Exclude:
+    - bin/**/*
+    - db/**/*
+    - node_modules/**/*
+  TargetRubyVersion: 2.6.3
+
+# Rubocop Style Choices
+
+Layout/AccessModifierIndentation:
+  EnforcedStyle: outdent
+
+Layout/HashAlignment:
+  EnforcedLastArgumentHashStyle: ignore_implicit
+
+Layout/LineLength:
+  Max: 240
+
+Metrics/BlockLength:
+  ExcludedMethods: ["context", "describe", "shared_examples"]
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+  Exclude:
+    - config/application.rb
+    - app/channels/application_cable/channel.rb
+    - app/channels/application_cable/connection.rb
+
+Style/Documentation:
+    Enabled: false
+
+Style/EmptyMethod:
+    Enabled: false
+
+Style/FrozenStringLiteralComment:
+    Enabled: false
+
+Style/HashEachMethods:
+    Enabled: false
+
+Style/HashTransformKeys:
+    Enabled: false
+
+Style/HashTransformValues:
+    Enabled: false
+
+Style/MultilineTernaryOperator:
+    Enabled: false
+
+Style/SymbolArray:
+    Enabled: false

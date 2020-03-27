@@ -5,8 +5,8 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  def show 
-    authorize! :view, @user, :message => "Unable to view user" 
+  def show
+    authorize! :view, @user, message: 'Unable to view user'
     @user = User.find(params[:id])
   end
 
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
   def update
     respond_to do |format|
-    authorize! :update, @user, :message => "Unable to update user"
+      authorize! :update, @user, message: 'Unable to update user'
 
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    authorize! :update, @user, :message => "Unable to destroy user"
+    authorize! :update, @user, message: 'Unable to destroy user'
 
     @user.destroy
     respond_to do |format|
@@ -53,12 +53,13 @@ class UsersController < ApplicationController
     end
   end
 
-  private
-    def set_user
-      @user = User.find(params[:id])
-    end
+private
 
-    def user_params
-      params.require(:user).permit(:first_name, :second_name, :email, :password, :password_confirmation)
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:first_name, :second_name, :email, :password, :password_confirmation)
+  end
 end

@@ -1,6 +1,7 @@
 AllCops:
   Include:
     - '**/*.rb'
+    - 'archive_posts.rake'
   Exclude:
     - bin/**/*
     - config/developer_configs.rb

@@ -14,7 +14,6 @@ describe "users/show.html.erb" do
             expect(rendered).to have_content("test@meh.com")
             expect(rendered).to_not have_content("Greetings!")
         end
-
     end
 
     context "when the user has no data" do
@@ -27,7 +26,5 @@ describe "users/show.html.erb" do
             expect(rendered).to have_content(nil)
             expect(rendered).to_not have_content("test@meh.com")
         end
-
     end
-
 end

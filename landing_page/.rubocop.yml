@@ -44,7 +44,7 @@ Layout/EndAlignment:
   EnforcedStyleAlignWith: variable
 
 Layout/LineLength:
-  Max: 140
+  Max: 240
 
 Metrics/ParameterLists:
   CountKeywordArgs: false
@@ -66,6 +66,11 @@ Style/ClassAndModuleChildren:
   Exclude:
     - app/controllers/api/**/*
     - config/application.rb
+    - app/channels/application_cable/channel.rb
+    - app/channels/application_cable/connection.rb
+
+Style/Documentation:
+    Enabled: false
 
 Style/DoubleNegation:
   Enabled: false
@@ -73,8 +78,17 @@ Style/DoubleNegation:
 Style/EmptyElse:
   EnforcedStyle: empty
 
+Style/EmptyMethod:
+    Enabled: false
+
+Style/FrozenStringLiteralComment:
+    Enabled: false
+
 Style/HashSyntax:
   EnforcedStyle: ruby19
+
+Style/MultilineTernaryOperator:
+    Enabled: false
 
 Style/PercentLiteralDelimiters:
   PreferredDelimiters:
@@ -83,6 +97,9 @@ Style/PercentLiteralDelimiters:
 
 Style/RaiseArgs:
   EnforcedStyle: compact
+
+Style/SingleLineMethods:
+  Enabled: false
 
 Style/SymbolArray:
     Enabled: false

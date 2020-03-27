@@ -4,11 +4,8 @@ AllCops:
     - 'archive_posts.rake'
   Exclude:
     - bin/**/*
-    - config/developer_configs.rb
-    - config/developer_vars.rb
     - db/**/*
     - node_modules/**/*
-    - vendor/**/*
   TargetRubyVersion: 2.6.3
 
 # Rubocop Style Choices
@@ -19,62 +16,21 @@ Layout/AccessModifierIndentation:
 Layout/HashAlignment:
   EnforcedLastArgumentHashStyle: ignore_implicit
 
-Layout/ParameterAlignment:
-  EnforcedStyle: with_fixed_indentation
-
-Layout/CaseIndentation:
-  EnforcedStyle: end
-  IndentOneStep: true
-
-Layout/DotPosition:
-  EnforcedStyle: trailing
-
-Layout/FirstArrayElementIndentation:
-  EnforcedStyle: consistent
-
-Layout/MultilineMethodCallIndentation:
-  EnforcedStyle: indented
-
-Layout/MultilineOperationIndentation:
-  EnforcedStyle: indented
-
-Layout/EndAlignment:
-  EnforcedStyleAlignWith: variable
-
 Layout/LineLength:
   Max: 240
-
-Metrics/ParameterLists:
-  CountKeywordArgs: false
 
 Metrics/BlockLength:
   ExcludedMethods: ["context", "describe", "shared_examples"]
 
-Naming/PredicateName:
-    ForbiddenPrefixes: is_, have_
-
-Style/Alias:
-  EnforcedStyle: prefer_alias_method
-
-Style/AndOr:
-  EnforcedStyle: conditionals
-
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
   Exclude:
-    - app/controllers/api/**/*
     - config/application.rb
     - app/channels/application_cable/channel.rb
     - app/channels/application_cable/connection.rb
 
 Style/Documentation:
     Enabled: false
-
-Style/DoubleNegation:
-  Enabled: false
-
-Style/EmptyElse:
-  EnforcedStyle: empty
 
 Style/EmptyMethod:
     Enabled: false
@@ -85,10 +41,6 @@ Style/FrozenStringLiteralComment:
 Style/HashEachMethods:
     Enabled: false
 
-
-Style/HashSyntax:
-  EnforcedStyle: ruby19
-
 Style/HashTransformKeys:
     Enabled: false
 
@@ -98,39 +50,5 @@ Style/HashTransformValues:
 Style/MultilineTernaryOperator:
     Enabled: false
 
-Style/PercentLiteralDelimiters:
-  PreferredDelimiters:
-    "%i": ()
-    "%w": ()
-
-Style/RaiseArgs:
-  EnforcedStyle: compact
-
-Style/SingleLineMethods:
-  Enabled: false
-
 Style/SymbolArray:
     Enabled: false
-
-# Temporary Rubocop TODO exclusions:
-# We might want to fix these at some point, but in the mean time we don't want to disable the cop for other files.
-
-Metrics/AbcSize:
-  Max: 59
-  Exclude:
-    - app/models/ability.rb
-
-Metrics/CyclomaticComplexity:
-  Max: 14
-  Exclude:
-    - app/models/ability.rb
-
-Metrics/MethodLength:
-  Max: 30
-  Exclude:
-    - app/models/ability.rb
-
-Metrics/PerceivedComplexity:
-  Max: 10
-  Exclude:
-    - app/models/ability.rb

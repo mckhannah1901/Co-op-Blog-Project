@@ -5,9 +5,6 @@ RSpec.describe MicropostsController, type: :controller do
     @user = FactoryBot.create(:user)
     session[:user_id] = @user.id
     login(@user)
-  end
-
-  before :each do
     allow(controller).to receive(:current_user).and_return(@user)
     @micropost = FactoryBot.create(:micropost, user_id: @user.id)
   end

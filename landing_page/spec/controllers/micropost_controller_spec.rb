@@ -68,7 +68,6 @@ RSpec.describe MicropostsController, type: :controller do
     end
 
     it 'fails if a user is not logged in or a guest tries to edit a post' do
-      logout(@user)
       @user.id = nil
       put :update, params: { id: @micropost.id, micropost: { title: 'Hello there!', user_id: @user.id } }
       @micropost.reload
@@ -82,9 +81,5 @@ private
 
   def create_new_micropost
     post :create, params: { micropost: { title: 'Tests', content: 'Tested' } }
-  end
-
-  def logout(_user)
-    session[:user_id] = nil
   end
 end

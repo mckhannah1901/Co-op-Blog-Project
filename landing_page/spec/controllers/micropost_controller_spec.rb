@@ -39,7 +39,10 @@ RSpec.describe MicropostsController, type: :controller do
 
   context 'DELETE #destroy' do
     it 'soft deletes a post from the database' do
-      expect { get :destroy, params: { id: @micropost.id } }.to change { Micropost.kept.count }.by(-1)
+      expect do
+        get :destroy,
+            params: { id: @micropost.id }
+      end .to change { Micropost.kept.count }.by(-1)
       expect(assigns(:microposts)).to be_nil
       expect(response).to redirect_to(microposts_url)
       expect(flash[:warning]).to be_present
@@ -49,15 +52,16 @@ RSpec.describe MicropostsController, type: :controller do
   context ' GET #recover' do
     it 'should recover a soft deleted post' do
       get :destroy, params: { id: @micropost.id }
-      expect { get :recover, params: { id: @micropost.id } }.to change { Micropost.kept.count }.by(1)
+      expect do
+        get :recover,
+            params: { id: @micropost.id }
+      end .to change { Micropost.kept.count }.by(1)
     end
   end
 
   context 'PUT #update' do
     it 'allows a user to update a post' do
-      put :update, params: { id: @micropost.id, micropost: { title: 'Welcome!', content: 'Lorem ipsum
-                                    dolor sit amet, consectetur adipiscing elit. Proin maximus pellentesque lacus,
-                                    nec aliquam mi auctor id.', user_id: @user.id } }
+      put :update, params: { id: @micropost.id, micropost: { title: 'Welcome!', user_id: @user.id } }
       @micropost.reload
 
       expect(@micropost.title).to eq('Welcome!')
@@ -68,9 +72,7 @@ RSpec.describe MicropostsController, type: :controller do
     it 'fails if a user is not logged in or a guest tries to edit a post' do
       logout(@user)
       @user.id = nil
-      put :update, params: { id: @micropost.id, micropost: { title: 'Hello there!', content: 'Lorem ipsum
-                                dolor sit amet, consectetur adipiscing elit. Proin maximus pellentesque lacus,
-                                nec aliquam mi auctor id.', user_id: @user.id } }
+      put :update, params: { id: @micropost.id, micropost: { title: 'Hello there!', user_id: @user.id } }
       @micropost.reload
 
       expect(@micropost.title).to_not eq('Hello there!')

@@ -3,7 +3,6 @@ require 'rails_helper'
 describe 'microposts/show.html.erb' do
   before :each do
     @user = FactoryBot.create(:user)
-    session[:user_id] = @user.id
     login(@user)
   end
 

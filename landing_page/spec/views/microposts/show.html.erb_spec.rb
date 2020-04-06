@@ -3,7 +3,8 @@ require 'rails_helper'
 describe 'microposts/show.html.erb' do
   before :each do
     @user = FactoryBot.create(:user)
-    login(@user)
+    allow(view).to receive(:current_user).and_return(@user)
+    @micropost = FactoryBot.create(:micropost, user_id: @user.id)
   end
 
   context 'when the micropost has data' do
@@ -14,11 +15,5 @@ describe 'microposts/show.html.erb' do
 
       expect(rendered).to have_content('Well hello there!')
     end
-  end
-
-private
-
-  def login(_user)
-    session[:user_id] = @user.id
   end
 end

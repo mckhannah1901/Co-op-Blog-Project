@@ -80,10 +80,6 @@ RSpec.describe MicropostsController, type: :controller do
 
 private
 
-  def login(_user)
-    session[:user_id] = @user.id
-  end
-
   def create_new_micropost
     post :create, params: { micropost: { title: 'Tests', content: 'Tested' } }
   end

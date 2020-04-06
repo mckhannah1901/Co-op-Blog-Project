@@ -30,7 +30,7 @@ RSpec.describe MicropostsController, type: :controller do
   end
 
   context 'GET #show' do
-    it 'shows a user or guest the full post' do
+    it 'shows the full post' do
       get :show, params: { id: @micropost.id }
       expect(response).to render_template('show')
       expect(response.status).to eq(200)

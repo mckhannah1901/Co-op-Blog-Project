@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe MicropostsController, type: :controller do
   before :each do
     @user = FactoryBot.create(:user)
-    login(@user)
     allow(controller).to receive(:current_user).and_return(@user)
     @micropost = FactoryBot.create(:micropost, user_id: @user.id)
   end

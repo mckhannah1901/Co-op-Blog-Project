@@ -14,7 +14,6 @@ describe 'microposts/show.html.erb' do
       render
 
       expect(rendered).to have_content('Well hello there!')
-      expect(rendered).to_not have_content('Lockdown')
     end
   end
 

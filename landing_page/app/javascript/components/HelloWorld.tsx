@@ -1,10 +1,12 @@
 import * as React from 'react'
 
+const greeting = "Greetings from React!";
+
 class HelloWorld extends React.Component {
   render () {
     return (
       <div>
-          <strong><p><u>Greetings from React!</u></p></strong>
+          <strong><p><u>{greeting}</u></p></strong>
       </div>
     );
   }

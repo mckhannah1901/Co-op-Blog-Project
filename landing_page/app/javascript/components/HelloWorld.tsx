@@ -1,10 +1,10 @@
 import * as React from 'react'
 
-type MyProps = {
+type HelloWorldProps = {
     greeting:string
 }
 
-class HelloWorld extends React.Component<MyProps> {
+class HelloWorld extends React.Component<HelloWorldProps> {
     render (){
         return (
             <div className="HelloWorld">

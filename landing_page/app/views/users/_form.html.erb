@@ -1,45 +1,45 @@
 <%= form_with(model: user, local: true) do |form| %>
   <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+    <div class="errors">
+      <div id="error_explanation">
+        <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-        <% user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
+  <div class="form-fields">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form.label :first_name %>
+      <%= form.text_field :first_name, class: 'form-control' %>
+
+      <%= form.label :second_name %>
+      <%= form.text_field :second_name, class: 'form-control' %>
+
+      <%= form.label :email %>
+      <%= form.text_field :email, class: 'form-control' %>
+
+      <%= form.label :password %>
+      <%= form.password_field :password, class: 'form-control' %>
+
+      <%= form.label :password_confirmation %>
+      <%= form.password_field :password_confirmation, class: 'form-control' %>
+
+      <br></br>
+
+      <%= form.submit "Create Account", class: "btn btn-primary" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :second_name %>
-    <%= form.text_field :second_name %>
-  </div>
+  <br></br>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
+  <div class="links">
+    <p>Already have an account? <a href="/login" style="color: lightgreen"><strong><u>Create one here!</u></strong></a></p>
+    <p><strong><u> <%= link_to "Home Page", root_url %>  </u></strong></p>
   </div>
-
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-
-  <p>Already have an account? <%= link_to "Log in here!", login_path %></p>
-  <%= link_to "Home Page", root_path %>
 <% end %>

@@ -1,80 +1,24 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<div class="navbar">
+  <strong><u><%= link_to "Create Blog Post", new_micropost_url %></u></strong>
+  <strong><u><%= link_to "View Blog Posts", microposts_path%></u></strong>
+  <strong><u><%= link_to "View Archived Posts", microposts_path(@micropost, :archived => 'true')%></u></strong>
+  <strong><u><%= link_to "Edit Profile", edit_user_url%></u></strong>
+  <strong><u><%= link_to "Log out", logout_path, method: "delete" %></u></strong>
+</div>
 
-  <div class="container">
+<%= react_component("Users", {title: "Your Profile Details"}) %>
 
-    <nav>
+<div class="user_info">
+  <%= react_component("Users", {userInfoType: "First Name: "})%>
+  <%= react_component("Users", {userDetails: @user.first_name})%>
 
-      <ul class="nav navbar-nav navbar-right">
+  <%= react_component("Users", {userInfoType: "Second Name: "})%>
+  <%= react_component("Users", {userDetails: @user.second_name})%>
 
-        <% if logged_in? %>
+  <%= react_component("Users", {userInfoType: "Email: "})%>
+  <%= react_component("Users", {userDetails: @user.email})%>
+</div>
 
-          <li class="postcreation ">
-
-            <%= link_to "Create Blog Post", new_micropost_url %>
-
-          </li>
-
-          <li class="dropdown">
-
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-
-              Account <b class="caret"></b>
-
-            </a>
-
-            <ul class="dropdown-menu">
-
-              <li><%= link_to "Edit Profile", edit_user_url%></li>
-              <li><%= link_to "View Blog Posts", microposts_path%></li>
-
-              <li class="divider"></li>
-
-              <li>
-
-                <%= link_to "Log out", logout_path, method: "delete" %>
-
-              </li>
-
-            </ul>
-
-          </li>
-        
-        <div class="fixed-top">
-          <% if logged_in? %>
-            <strong>Welcome, </strong>
-            <b><%= @user.email%></b>
-          <% end %>
-
-        <% else %>
-
-          <li><%= link_to "Log in", login_path %></li>
-
-        <% end %>
-
-      </ul>
-
-    </nav>
-   
-    
-
-  </div>
-
-</header>
-
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
-
-<p>
-  <strong>Second name: </strong>
-  <%= @user.second_name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-<br></br>
+<div class="panda">
+  <img src="https://www.natgeokids.com/wp-content/uploads/2014/04/panda-facts-6-1.jpg">
+</div>

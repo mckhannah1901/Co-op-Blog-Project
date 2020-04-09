@@ -3,7 +3,7 @@ import CSS from 'csstype';
 
 type SessionsProps = {
     title:string
-}
+};
 
 const h1Styles: CSS.Properties = {
     padding: '1.0rem',

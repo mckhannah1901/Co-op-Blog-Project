@@ -1,5 +1,13 @@
-<h1>Editing Blog Post</h1>
+<%= react_component("Microposts", {title: "Edit Blog Post"}) %>
 
-<%= render 'micropost_form', micropost: @micropost %>
+<div class="micropost_form">
+    <%= render 'micropost_form', micropost: @micropost %>
+</div>
 
-<%= link_to 'Show', @micropost %>
+<div class="show_link">
+    <%= link_to 'Show', @micropost %>
+</div>
+
+<div class="edit">
+  <img src="https://www.mememaker.net/api/bucket?path=static/img/memes/full/2018/Apr/11/16/edit-all-the-things-13181.png"style="width:450px;height:300px;">
+</div>

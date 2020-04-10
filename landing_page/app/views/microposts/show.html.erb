@@ -1,31 +1,32 @@
-<div id="notice"><%= notice %></div>
+<div class="navbar">
+    <strong><u><%= link_to "View Blog Posts", microposts_path%></u></strong>
+    <strong><u><%= link_to "View Archived Posts", microposts_path(@micropost, :archived => 'true')%></u></strong>
+  
+    <% if logged_in? %>  
+        <strong><u><%= link_to "Create Blog Post", new_micropost_url %></u></strong>
+        <strong><u><%= link_to "Back to Profile", current_user %></u></strong>
+        <strong><u><%= link_to "Log out", logout_path, method: "delete" %></u></strong>
+    <% else %>
+        <strong><u><%= link_to "Home Page", root_url %></u></strong>
+    <% end %>
+</div>
 
-<p>
-    <h2><%= @micropost.title %></h2>
-    <br></br>
-</p>
+<%= react_component("Microposts", {title: @micropost.title}) %>
+<hr></hr>
 
-<p>
-    <%= @micropost.content %>
-</p>
+<div class="content">
+    <p><%= @micropost.content %></p>
+</div>
 
-<p>
-    <strong>Created at:</strong>
-    <%= @micropost.created_at %>
-</p>
+<hr></hr>
+    
+<div class="microposts_info">
+    <%= react_component("Microposts", {micropostInfoType: "Created at: "})%>
+    <p><%= @micropost.created_at %></p>
 
-<p>
-    <strong>By:</strong>
-    <%= User.find_by_id(@micropost.user_id).email%>
-</p>
+    <%= react_component("Microposts", {micropostInfoType: "By: "})%>
+    <p><%= User.find_by_id(@micropost.user_id).email%>
 
-<p>
-    <strong>Updated at:</strong>
-    <%= @micropost.updated_at %>
-</p>
-
-<br></br>
-<br></br>
-<br></br>
-
-<b><u><p><%= link_to "Back to List of Blog Posts", microposts_path %></p></u></b>
+    <%= react_component("Microposts", {micropostInfoType: "Updated at: "})%>
+    <p><%= @micropost.updated_at %></p>
+</div>

@@ -17,72 +17,14 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
- .btn_create_user
- {
-    height:65px;
-    width:150px;
-    margin: 0 auto;
-    font-size: 18px;
-    font-weight: bold;
-    color: black;
-    padding: 20px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    border: 2px solid #000000;
-    background-color: #f5f5f5;
- }
-
- .btn_login
- {
-    height:65px;
-    width:150px;
-    margin: 0 auto;
-    font-size: 18px;
-    font-weight: bold;
-    color: black;
-    padding: 20px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    border: 2px solid #000000;
-    background-color: #f5f5f5;
- }
-
- .btn_all_posts
- {
-   height:85px;
-   width:150px;
-   margin: 0 auto;
-   font-size: 18px;
-   font-weight: bold;
-   color: black;
-   padding: 20px 20px;
-   text-align: center;
-   text-decoration: none;
-   display: inline-block;
-   border: 2px solid #000000;
-   background-color: #f5f5f5;
- }
-
- .btn_archived_posts
- {
-   height:85px;
-   width:150px;
-   margin: 0 auto;
-   font-size: 18px;
-   font-weight: bold;
-   color: black;
-   padding: 20px 20px;
-   text-align: center;
-   text-decoration: none;
-   display: inline-block;
-   border: 2px solid #000000;
-   background-color: #f5f5f5;
- }
-
  body
  {
      background-color: lightgoldenrodyellow;
  }
+
+.user_button {
+    height:85px;
+    width:150px;
+}
+
  

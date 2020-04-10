@@ -1,48 +1,51 @@
-<p id="notice"><%= notice%></p>
+<div class="navbar">
+    <strong><u><%= link_to "View Blog Posts", microposts_path%></u></strong>
+    <strong><u><%= link_to "View Archived Posts", microposts_path(@micropost, :archived => 'true')%></u></strong>
+  
+    <% if logged_in? %>  
+        <strong><u><%= link_to "Create Blog Post", new_micropost_url %></u></strong>
+        <strong><u><%= link_to "Back to Profile", current_user %></u></strong>
+        <strong><u><%= link_to "Log out", logout_path, method: "delete" %></u></strong>
+    <% else %>
+        <strong><u><%= link_to "Home Page", root_url %></u></strong>
+    <% end %>
 
+</div>
 
-<h1><%= @archived ? "Archived " : "Blog " %>Posts</h1>
+<%= react_component("Microposts", {title: @archived ? "Archived Posts" : "Blog Posts"}) %>
 
-<% if logged_in? %>
-
-    <li class="postcreation ">
-
-        <%= link_to "Back to Profile", current_user %>
-
-    </li>
-<% end %>
-
-<table>
-
-    <tbody>
-        <% @microposts.each do |micropost| %>
-            <tr>
-                <br></br>
-                <b><%= "Title: " %></b>
-                <%= micropost.title %>
-                <br></br>
-                <b><%= "Summary: "%></b>
-                <%= micropost_summary(micropost) %>
-                <br></br>
-                <b><%= "Created on: "%></b>
-                <%= micropost.created_at %>
-                <b><%= " By: "%></b>
-                <%= User.find_by_id(micropost.user_id).email%>
-                <br></br>
-                <b><%= "Updated at: "%></b>
-                <%= micropost.updated_at %>
-                <br></br>
-                <%= link_to 'Show', micropost%>
-                <% if logged_in? %>
-                    <div class="edit_post">
-                        <%= link_to "Edit", edit_micropost_path(micropost) %>
-                    </div>
-                    <div class="delete_post">
-                        <%= link_to 'Delete', micropost, method: :delete, data: { confirm: 'Are you sure?' } %>
-                    </div>
-                <% end %>
-                <br></br>
-            </tr>
-        <% end %>
-    </tbody>
-</table>
+<div class="posts_display">
+    <table>
+        <tbody>
+            <% @microposts.each do |micropost| %>
+                <tr>
+                    <br></br>
+                    <b><%= "Title: " %></b>
+                    <%= micropost.title %>
+                    <br></br>
+                    <b><%= "Summary: "%></b>
+                    <%= micropost_summary(micropost) %>
+                    <br></br>
+                    <b><%= "Created on: "%></b>
+                    <%= micropost.created_at %>
+                    <b><%= " By: "%></b>
+                    <%= User.find_by_id(micropost.user_id).email%>
+                    <br></br>
+                    <b><%= "Updated at: "%></b>
+                    <%= micropost.updated_at %>
+                    <br></br>
+                    <%= link_to 'Show', micropost%>
+                    <% if logged_in? %>
+                        <div class="edit_post">
+                            <%= link_to "Edit", edit_micropost_path(micropost) %>
+                        </div>
+                        <div class="delete_post">
+                            <%= link_to 'Delete', micropost, method: :delete, data: { confirm: 'Are you sure?' } %>
+                        </div>
+                    <% end %>
+                    <hr></hr>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

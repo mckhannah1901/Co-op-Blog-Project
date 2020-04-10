@@ -1,20 +1,27 @@
-<%= react_component("HelloWorld", {greeting: "Greetings from React!"}) %>
+<center><%= react_component("Home", {title: "Welcome to My Blogging Engine"}) %></center>
 
-<h1><center>Hello! Welcome to My Blogging Engine!</center></h1>
-<br></br>
-<h2><center>Use the buttons below to create a user account or to login!</center></h2>
-<br></br>
+<center><%= react_component("Home", {content: "You can Create an Account and Login below or View Blog Posts as a Guest!"})%></center>
 
-<center><%= link_to "Create User", new_user_path, class: 'btn_create_user' %></center>
-<br></br>
-<center><%= link_to "Log In", login_path, class: 'btn_login' %></center>
 <br></br>
 
-<h3><center>Alternatively you can view blog posts as a guest!</center></h3>
+<div class="all_btns">
+    <div id="user_btn">
+        <%= button_to "Create User", new_user_path, class: 'create_btn', :method => :get%> 
+        <%= button_to "Log In", login_path, class: 'login_btn', :method => :get %>
+    </div>
+
+    <br></br>
+
+    <div id="post_btns">
+        <%= button_to "View Blog Posts", microposts_path, class: 'posts_btn', :method => :get %>
+        <%= button_to "View Archive", microposts_path(@micropost, :archived => 'true'), class: 'archived_btn', :method => :get %>
+    </div>
+</div>
+
 <br></br>
-<center><%= link_to "View Blog Posts", microposts_path, class: 'btn_all_posts' %></center>
-<br></br>
-<center><%= link_to "View Archive", microposts_path(@micropost, :archived => 'true'), class: 'btn_archived_posts' %></center>
 <br></br>
 
-<center><img src="https://miro.medium.com/max/1275/1*6d5dw6dPhy4vBp2vRW6uzw.png"></center>
+<div class="home_panda">
+    <center><img src="https://miro.medium.com/max/1275/1*6d5dw6dPhy4vBp2vRW6uzw.png"style="width:1000px,height:600px"><center>
+</div>
+

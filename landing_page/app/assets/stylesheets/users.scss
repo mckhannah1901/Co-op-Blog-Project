@@ -1,3 +1,38 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.form_fields {
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+.errors {
+    padding-left: 20px;
+}
+
+.links {
+    padding-left: 20px;
+}
+
+.navbar {
+    background-color: lightgray;
+    position: fixed;
+}
+
+.show_link {
+    padding-left: 20px;
+}
+
+.user_info {
+    padding-left: 1rem;
+    display: inline-block;
+}
+
+.panda {
+    padding: 20px;
+    right: 0px;
+    bottom: 0%;
+    position: absolute;
+    background-position: right;
+}

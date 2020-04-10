@@ -1,5 +1,19 @@
-<h3>Create a Blog article!</h3>
+<div class="navbar">
+      <strong><u><%= link_to "View Blog Posts", microposts_path%></u></strong>
+      <strong><u><%= link_to "View Archived Posts", microposts_path(@micropost, :archived => 'true')%></u></strong>
+  
+      <% if logged_in? %> 
+        <strong><u><%= link_to "Back to Profile", current_user %></u></strong>
+        <strong><u><%= link_to "Log out", logout_path, method: "delete" %></u></strong>
+      <% end %>
+</div>
+
+<%= react_component("Microposts", {title: "Create a Blog Post!"}) %>
 
 <div class="micropost_form">
       <%= render 'microposts/micropost_form' %>
+</div>
+
+<div class="cat">
+  <img src="https://www.rover.com/blog/wp-content/uploads/2019/12/Funny-cat-sitting-up.jpg"style="width:450px;height:300px;">
 </div>

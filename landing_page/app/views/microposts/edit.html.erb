@@ -1,5 +1,21 @@
-<h1>Editing Blog Post</h1>
+<div class="navbar">
+    <strong><u><%= link_to "View Blog Posts", microposts_path%></u></strong>
+    <strong><u><%= link_to "View Archived Posts", microposts_path(@micropost, :archived => 'true')%></u></strong>
+    <strong><u><%= link_to "Create Blog Post", new_micropost_url %></u></strong>
+    <strong><u><%= link_to "Back to Profile", current_user %></u></strong>
+    <strong><u><%= link_to "Log out", logout_path, method: "delete" %></u></strong>
+</div>
 
-<%= render 'micropost_form', micropost: @micropost %>
+<%= react_component("Microposts", {title: "Edit Blog Post"}) %>
 
-<%= link_to 'Show', @micropost %>
+<div class="micropost_form">
+    <%= render 'micropost_form', micropost: @micropost %>
+</div>
+
+<div class="show_link">
+    <%= link_to 'Show', @micropost %>
+</div>
+
+<div class="edit">
+  <img src="https://www.mememaker.net/api/bucket?path=static/img/memes/full/2018/Apr/11/16/edit-all-the-things-13181.png"style="width:450px;height:300px;">
+</div>
